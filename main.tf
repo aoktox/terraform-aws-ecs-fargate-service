@@ -7,7 +7,7 @@ locals {
     Application   = "${var.application}"
     ProductDomain = "${var.product_domain}"
     Environment   = "${var.environment}"
-    ManagedBy     = "Terraform"
+    ManagedBy     = "terraform"
   }
 
   service_tags = {
@@ -67,6 +67,10 @@ resource "aws_ecs_service" "ecs_service" {
     target_group_arn = "${var.target_group_arn}"
     container_name   = "${var.main_container_name}"
     container_port   = "${var.main_container_port}"
+  }
+
+  deployment_controller {
+    type = "${var.deployment_controller}"
   }
 
   propagate_tags = "SERVICE"
